@@ -1,3 +1,4 @@
+using ma9.Api.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,8 @@ namespace UsuarioService.Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddJwt(Configuration);
+            services.ResolveDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -33,7 +33,7 @@ namespace Saga.Orchestrator.Controllers
             // Se tiver cadastrado, pegar usuário
             // Se não tiver cadastrado, cadastrar usuário
             // Calcular folha pagamento
-            return StatusCode(usuarioActionResult); ;
+            return StatusCode(usuarioActionResult);
         }
     }
 }

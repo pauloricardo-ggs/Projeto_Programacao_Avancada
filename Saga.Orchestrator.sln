@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuarioService.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolhaPagamentoService.Application", "Services\FolhaPagamentoService.Application\FolhaPagamentoService.Application.csproj", "{E7D5F4FE-413E-48C6-82E5-63CA4114136B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuarioService.Business", "Services\UsuarioService.Business\UsuarioService.Business.csproj", "{BC97CDD8-DE77-435F-818B-A9193D775C6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E7D5F4FE-413E-48C6-82E5-63CA4114136B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7D5F4FE-413E-48C6-82E5-63CA4114136B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7D5F4FE-413E-48C6-82E5-63CA4114136B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC97CDD8-DE77-435F-818B-A9193D775C6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC97CDD8-DE77-435F-818B-A9193D775C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC97CDD8-DE77-435F-818B-A9193D775C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC97CDD8-DE77-435F-818B-A9193D775C6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 		{71D3AF0B-F56D-47E9-AC06-CDF5F5A5DFA6} = {D3D4874D-1CAD-486B-9BCC-A5172B097178}
 		{E4EDED1E-E223-43FB-ABAC-9547981A9401} = {0782FAF9-8ADA-4970-833B-B6ADD8313F1C}
 		{E7D5F4FE-413E-48C6-82E5-63CA4114136B} = {71D3AF0B-F56D-47E9-AC06-CDF5F5A5DFA6}
+		{BC97CDD8-DE77-435F-818B-A9193D775C6B} = {0782FAF9-8ADA-4970-833B-B6ADD8313F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3097A8A5-04CC-4DA4-8EAA-402FC3B9A4A7}

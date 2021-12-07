@@ -1,14 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using UsuarioService.Business.Interfaces;
-using UsuarioService.Business.Services;
+using UsuarioService.Business.Notificacoes;
 
-namespace ma9.Api.Configuration
+namespace UsuarioService.Application.Configuration
 {
     public static class DependencyInjectionConfig
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<INotificador, Notificador>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             return services;
         }

@@ -1,15 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Saga.Orchestrator.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using UsuarioService.Application.Configuration;
 
 namespace Saga.Orchestrator
 {
@@ -25,9 +21,10 @@ namespace Saga.Orchestrator
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddHttpClient("Usuario", c => c.BaseAddress = new Uri("https://localhost:44357"));
-            services.AddHttpClient("FolhaPagamento", c => c.BaseAddress = new Uri("https://localhost:44334"));
+            services.AddJwtConfiguration();
+            services.AddIdentityConfiguration(Configuration);
+            services.AddHttpClient("UsuarioApi", c => c.BaseAddress = new Uri("https://localhost:44357"));
+            services.AddHttpClient("FolhaPagamentoApi", c => c.BaseAddress = new Uri("https://localhost:44334"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,9 +35,8 @@ namespace Saga.Orchestrator
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

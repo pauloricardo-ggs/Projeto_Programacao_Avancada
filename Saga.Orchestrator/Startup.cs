@@ -24,7 +24,7 @@ namespace Saga.Orchestrator
             services.AddJwtConfiguration();
             services.AddIdentityConfiguration(Configuration);
             services.AddHttpClient("UsuarioApi", c => c.BaseAddress = new Uri("https://localhost:44357"));
-            services.AddHttpClient("FolhaPagamentoApi", c => c.BaseAddress = new Uri("https://localhost:44334"));
+            services.AddHttpClient("FolhaPagamentoApi", c => c.BaseAddress = new Uri("https://localhost:44383"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

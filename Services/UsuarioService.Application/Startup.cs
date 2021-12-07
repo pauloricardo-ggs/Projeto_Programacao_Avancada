@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Threading.Tasks;
 using UsuarioService.Application.Configuration;
 
 namespace UsuarioService.Application
@@ -25,8 +26,10 @@ namespace UsuarioService.Application
             services.ResolveDependencies();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            CriarRolesECadastrarAdmin(serviceProvider);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -41,6 +44,47 @@ namespace UsuarioService.Application
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void CriarRolesECadastrarAdmin(IServiceProvider serviceProvider)
+        {
+            string[] roles = { "Admin", "Presidente", "Pesquisador", "Secretária" };
+            string email = "admin@admin.com";
+            var senha = "Admin@123";
+
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            foreach (var role in roles)
+            {
+                var roleExiste = roleManager.RoleExistsAsync(role).Result;
+
+                if (!roleExiste)
+                {
+                    var roleResult = roleManager.CreateAsync(new IdentityRole(role));
+                    roleResult.GetAwaiter().GetResult();
+                }
+            }
+
+            var administrador = new IdentityUser
+            {
+                UserName = email,
+                Email = email,
+                EmailConfirmed = true
+            };
+
+            var administradorCadastrado = userManager.FindByEmailAsync(email).Result;
+
+            if (administradorCadastrado == null)
+            {
+                var criarAdministrador = userManager.CreateAsync(administrador, senha);
+                criarAdministrador.GetAwaiter().GetResult();
+
+                if (criarAdministrador.IsCompletedSuccessfully)
+                {
+                    userManager.AddToRoleAsync(administrador, "Admin").GetAwaiter().GetResult();
+                }
+            }
         }
     }
 }
